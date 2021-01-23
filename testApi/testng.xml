@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<suite name="Suite" parallel="tests" thread-count="1">
+
+	<listeners><!-- 监听器设置，生成测试报告的监听器，不要改此处代码 -->
+		<listener class-name="listener.ExtentIReporterListenerUtil"></listener><!-- 这是extentreport报告的监听 -->
+		<!--<listener class-name="org.uncommons.reportng.HTMLReporter" />  &lt;!&ndash;这是reportng报告的监听 &ndash;&gt;-->
+	<!-- 	<listener class-name='com.testfan.ui.auto.utils.RetryListener'/> -->
+
+	</listeners>
+	
+	<test name="mtxshop">
+		<classes>
+				<class name="MTXShopTest.AddCartTest" />
+			    <class name="MTXShopTest.SubmitOrder" />
+			    <class name="MTXShopTest.CancelOrder" />
+
+		</classes>
+	</test>
+</suite>  
