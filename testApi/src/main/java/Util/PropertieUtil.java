@@ -1,11 +1,11 @@
 package Util;
 
-import sun.rmi.runtime.Log;
-
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class PropertieUtil {
@@ -24,7 +24,23 @@ public class PropertieUtil {
         }
         return "";
     }
+   //读取所有文件
+    public static Map<String, String> getAllkeyValues(String filepath)  {
+        Map<String,String> all =new HashMap<>();
 
+        Properties properties =new Properties();
+        try {
+            properties.load(new FileReader(filepath));
+            Set<Map.Entry<Object,Object>> entries =properties.entrySet();
+            for (Map.Entry<Object,Object> entry:entries) {
+                all.put(entry.getKey().toString(),entry.getValue().toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.info(String.valueOf(e));
+        }
+        return all;
+    }
     public static void main(String[] args) {
         //获取路径
         String resource = Properties.class.getResource("/db.properties").getPath();

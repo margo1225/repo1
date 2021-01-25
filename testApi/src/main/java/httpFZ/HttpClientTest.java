@@ -76,7 +76,7 @@ public class HttpClientTest {
 
     public static int getStatusCode(){
         int statusCode = httpResponse.getStatusLine().getStatusCode();
-        System.out.print("状态码：");
+
         logger.info("状态码是："+statusCode);
         return statusCode;
     }

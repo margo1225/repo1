@@ -4,6 +4,7 @@ import Util.DBUtil;
 import Util.PropertieUtil;
 import httpFZ.HttpClientTest;
 
+import mtxshop.server.LoginServer;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -33,20 +34,24 @@ public class TestBase {
         String path = PropertieUtil.class.getResource("/host.properties").getPath();
         host = getProperty(path, "http.mtxshop");
 
-        String url ="/mtx/index.php?s=/index/user/login.html";
-        System.out.println("执行");
-        Map<String,String> parmas = new HashMap<>();
-        parmas.put("accounts","shamo");
-        parmas.put("pwd","123456");
+        //String url ="/mtx/index.php?s=/index/user/login.html";
+//        System.out.println("执行");
+//        Map<String,String> parmas = new HashMap<>();
+//        parmas.put("accounts","shamo");
+//        parmas.put("pwd","123456");
+//
+       header.put("X-Requested-With","XMLHttpRequest");
+//        String s = HttpClientTest.postForm(host + url,parmas,header);
+//        System.out.println(s);
+        LoginServer loginServer = new LoginServer();
 
-        header.put("X-Requested-With","XMLHttpRequest");
-        String s = HttpClientTest.postForm(host + url,parmas,header);
-        System.out.println(s);
+        loginServer.login(host,header);
 
 
     }
     @AfterSuite
     public void afterSuit(){
         DBUtil.close();
+
     }
 }
